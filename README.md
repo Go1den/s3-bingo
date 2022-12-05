@@ -1,4 +1,4 @@
-# s3-bingo
+# Splatoon 3 Bingo
 Splatoon 3 Bingo
 
 
