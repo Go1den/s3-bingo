@@ -28,7 +28,7 @@ var bingo = function(weaponMap) {
     myBingoBoard = new BingoBoard(weaponMap, SEED, isBalancedCard);
 
 	var results = $("#results");
-	results.append ("<p>Splatoon 3 Weapons Bingo <strong>v3.1</strong>&emsp;Mode: <strong>" + MODE[0].toUpperCase() + MODE.substring(1) + "</strong>&emsp;Seed: <strong>" +
+	results.append ("<p>Splatoon3Bingo.com <strong>v3.1</strong>&emsp;Mode: <strong>" + MODE[0].toUpperCase() + MODE.substring(1) + "</strong>&emsp;Seed: <strong>" +
 	SEED + "</strong></p><p>Download the <strong><a href=\"https://bingo.splat.pw\">OBS Plugin</a></strong>&emsp;Join us on <strong><a href=\"https://discord.gg/CErcb4gVqE\">Discord</a></strong></p></p>");
 
 	$('.popout').click(function() {

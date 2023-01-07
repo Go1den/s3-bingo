@@ -18,7 +18,7 @@ var bingo = function(weaponMap) {
 	if(SEED == "") return reseedPage();
 	Math.seedrandom(SEED); //sets up the RNG
 	var results = $("#results");
-	results.append ("<p>Splatoon 3 Weapons Bingo <strong>v2</strong>&emsp;Seed: <strong>" +
+	results.append ("<p>Splatoon3Bingo.com <strong>v2</strong>&emsp;Seed: <strong>" +
 	SEED + "</strong></p><p>&emsp;Join us on <strong><a href=\"https://discord.gg/CErcb4gVqE\">Discord</a></strong></p></p>");
 
 	$('.popout').click(function() {

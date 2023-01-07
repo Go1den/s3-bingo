@@ -28,7 +28,7 @@ var bingo = function(bingoList, size, useMagicSquare) {
 	Math.seedrandom(SEED); //sets up the RNG
 	var MAX_SEED = 999999; //1 million cards
 	var results = $("#results");
-	results.append ("<p>Splatoon 3 Weapons Bingo <strong>v1</strong>&emsp;Seed: <strong>" +
+	results.append ("<p>Splatoon3Bingo.com <strong>v1</strong>&emsp;Seed: <strong>" +
 	SEED + "</strong></p><p>&emsp;Join us on <strong><a href=\"https://discord.gg/CErcb4gVqE\">Discord</a></strong></p></p>");
 
 	var noTypeCount = 0;
