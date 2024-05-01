@@ -51,7 +51,6 @@ class BingoBoard {
                 // pick a different weapon
                 i--;
             }
-            console.log(splatScreenWeapons.includes(chosenWeapon));
             tempWeapons.splice(index, 1);
         }
         return board;
