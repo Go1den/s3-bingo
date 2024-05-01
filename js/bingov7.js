@@ -11,7 +11,7 @@ var bingo = function(weaponMap) {
 
     let SEED = urlParams.get('seed');
 	if(SEED === undefined || SEED === null || SEED === "") {
-        return reseedPage(true);
+        return reseedPage(true, true);
     }
 	Math.seedrandom(SEED); //sets up the RNG
 
@@ -25,7 +25,17 @@ var bingo = function(weaponMap) {
         isBalancedCard = false;
     }
 
-    myBingoBoard = new BingoBoard(weaponMap, SEED, isBalancedCard);
+    let SPLATSCREEN = urlParams.get('splatscreen');
+    if(SPLATSCREEN === undefined || SPLATSCREEN === null || SPLATSCREEN.toLowerCase() !== "disabled") {
+        SPLATSCREEN = "enabled";
+    }
+
+    let isSplatScreenEnabled = true;
+    if(SPLATSCREEN.toLowerCase() == "disabled") {
+        isSplatScreenEnabled = false;
+    }
+
+    myBingoBoard = new BingoBoard(weaponMap, SEED, isBalancedCard, isSplatScreenEnabled);
 
 	var results = $("#results");
 	results.append ("<p>Splatoon3Bingo.com <strong>v7</strong>&emsp;Mode: <strong>" + MODE[0].toUpperCase() + MODE.substring(1) + "</strong>&emsp;Seed: <strong>" +
@@ -167,11 +177,14 @@ function enableSeed() {
     document.getElementById("mySeed").disabled = false;
 }
 
-function reseedPage(isBalancedCard) {
+function reseedPage(isBalancedCard, isSplatScreenEnabled) {
     Math.seedrandom();
 	var urlParams = "?seed=" + Math.ceil(999999 * Math.random());
     if (!isBalancedCard) {
         urlParams = urlParams + "&mode=chaos";
+    }
+    if (!isSplatScreenEnabled) {
+        urlParams = urlParams + "&splatscreen=disabled";
     }
 	window.location = urlParams;
 	return false;

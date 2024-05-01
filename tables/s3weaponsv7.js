@@ -158,6 +158,13 @@ var miscList = [
     {name: "Neo Splatana Stamper", image:"../weapons/107.png", types: "Splatana"}
 ]
 
+var splatScreenWeapons = [
+    "Foil Flingza Roller",
+    "Undercover Sorella Brella",
+    "Foil Squeezer",
+    ".52 Gal Deco"
+]
+
 weaponMap.set('Frontline', frontLineShooterList);
 weaponMap.set('Backline', backLineShooterList);
 weaponMap.set('Splattershot', splattershotList);
