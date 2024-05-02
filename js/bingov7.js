@@ -3,6 +3,7 @@ var randomWeaponPool = [];
 var isRandomWeaponsPoolPopulated = false;
 var myBingoBoard;
 var myWeaponRandomizer;
+var isSplatScreenEnabled = true;
 
 var bingo = function(weaponMap) {
 
@@ -30,7 +31,6 @@ var bingo = function(weaponMap) {
         SPLATSCREEN = "enabled";
     }
 
-    let isSplatScreenEnabled = true;
     if(SPLATSCREEN.toLowerCase() == "disabled") {
         isSplatScreenEnabled = false;
     }
@@ -138,7 +138,7 @@ function initializeRandomizer() {
     if (document.getElementById("randomSet").checked === true) {
         seed = document.getElementById("mySeed").value;
     }
-    myWeaponRandomizer = new WeaponRandomizer(myBingoBoard, seed, isUsingAllWeapons, isAllowingRepeats, isIgnoreSeed);
+    myWeaponRandomizer = new WeaponRandomizer(myBingoBoard, seed, isUsingAllWeapons, isAllowingRepeats, isIgnoreSeed, isSplatScreenEnabled);
 }
 
 function updateRandomWeapon(currentObj) {

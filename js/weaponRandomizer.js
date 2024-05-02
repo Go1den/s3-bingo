@@ -1,11 +1,12 @@
 class WeaponRandomizer {
-    constructor(bingoBoard, seed, isUsingAllWeapons, isAllowingRepeats, isIgnoreSeed) {
+    constructor(bingoBoard, seed, isUsingAllWeapons, isAllowingRepeats, isIgnoreSeed, isSplatScreenEnabled) {
         this.weaponMap = bingoBoard.weaponMap;
         this.board = bingoBoard.board;
         this.seed = seed;
         this.isIgnoreSeed = isIgnoreSeed;
         this.isUsingAllWeapons = isUsingAllWeapons;
         this.isAllowingRepeats = isAllowingRepeats;
+        this.isSplatScreenEnabled = isSplatScreenEnabled;
         this.pool = this.setupPool();
         this.index = -1;
     }
@@ -42,6 +43,11 @@ class WeaponRandomizer {
         for (let key in mapKeys) {
             let value = this.weaponMap.get(mapKeys[key]);
             for (let val in value) {
+                console.log(value[val].name);
+                if (this.isSplatScreenEnabled === false && splatScreenWeapons.includes(value[val].name)) {
+                    // skip this weapon
+                    continue;
+                }
                 result.push(value[val]);
             }
         }
