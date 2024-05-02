@@ -27,15 +27,18 @@
             <h2>Generate a new card</h2>
 
             <p><span class="note">Please note that if you got linked to this page as your goal, you are not allowed to use a different card.</span></p>
-            <a class="sortButton" href="#" onclick="reseedPage(true, true);">New Balanced Card</a>
-            <a class="sortButton" href="#" onclick="reseedPage(false, true);">New Chaos Card</a>
-            <a class="sortButton" href="#" onclick="reseedPage(true, false);">New Balanced Card (No Splattercolor Screen)</a>
-            <a class="sortButton" href="#" onclick="reseedPage(false, false);">New Chaos Card (No Splattercolor Screen)</a>
+            <a class="sortButton" href="#" onclick="reseedPage(true);">New Balanced Card</a>
+            <a class="sortButton" href="#" onclick="reseedPage(false);">New Chaos Card</a>
 
             <h2>Settings</h2>
             <a class="sortButton" href="#" onclick="refreshBoard(false);">Hide Weapon Names</a>
             <a class="sortButton" href="#" onclick="refreshBoard(true);">Show Weapon Names</a>
-            <br>
+            <br><br>
+            <p>Allow Weapons with Splattercolor Screen?</p>
+            <input type="radio" id="yesSplatScreen" name="radioSplatScreen" onclick="reseedPage(true);" value="1">
+            <label for="yesSplatScreen">Yes</label><br>
+            <input type="radio" id="noSplatScreen" name="radioSplatScreen" onclick="reseedPage(true);" value="0">
+            <label for="noSplatScreen">No</label><br>
             <h2>Random Weapon Assignment</h2>
             <input type="radio" id="randomIgnore" name="radioRandom" onclick="disableSeed()" value="0">
             <label for="randomIgnore">Ignore Seed</label><br>

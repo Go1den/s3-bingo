@@ -3,7 +3,7 @@ var randomWeaponPool = [];
 var isRandomWeaponsPoolPopulated = false;
 var myBingoBoard;
 var myWeaponRandomizer;
-var isSplatScreenEnabled = true;
+var isSplatScreenEnabled;
 
 var bingo = function(weaponMap) {
 
@@ -33,6 +33,10 @@ var bingo = function(weaponMap) {
 
     if(SPLATSCREEN.toLowerCase() == "disabled") {
         isSplatScreenEnabled = false;
+        $("input[id=noSplatScreen]").prop("checked", true);
+    } else {
+        isSplatScreenEnabled = true;
+        $("input[id=yesSplatScreen]").prop("checked", true);
     }
 
     myBingoBoard = new BingoBoard(weaponMap, SEED, isBalancedCard, isSplatScreenEnabled);
@@ -177,13 +181,13 @@ function enableSeed() {
     document.getElementById("mySeed").disabled = false;
 }
 
-function reseedPage(isBalancedCard, isSplatScreenEnabled) {
+function reseedPage(isBalancedCard) {
     Math.seedrandom();
 	var urlParams = "?seed=" + Math.ceil(999999 * Math.random());
     if (!isBalancedCard) {
         urlParams = urlParams + "&mode=chaos";
     }
-    if (!isSplatScreenEnabled) {
+    if (document.getElementById("noSplatScreen").checked === true) {
         urlParams = urlParams + "&splatscreen=disabled";
     }
 	window.location = urlParams;
