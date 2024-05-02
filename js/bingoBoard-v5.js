@@ -72,10 +72,13 @@ class BingoBoard {
             let currentWeaponList = tempWeaponsMap.get(currentKey);
             for (let k=0; k<5; k++) {
                 let index = Math.floor(Math.random() * currentWeaponList.length);
-                console.log(index);
                 let chosenWeapon = currentWeaponList[index];
                 let boardIndex = this.template[j][k];
                 board[boardIndex] = chosenWeapon;
+                if (this.isSplatScreenEnabled === false && splatScreenWeapons.includes(chosenWeapon.name)) {
+                    // pick a different weapon
+                    k--;
+                }
                 currentWeaponList.splice(index, 1);
             }
             tempWeaponsMap.set(currentKey, currentWeaponList);
