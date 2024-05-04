@@ -11,11 +11,12 @@ class BingoBoard {
     #t8 = [[0, 9, 13, 16, 22], [1, 7, 14, 18, 20], [2, 8, 11, 15, 24], [3, 5, 12, 19, 21], [4, 6, 10, 17, 23]];
     #allTemplates = [this.#t1, this.#t2, this.#t3, this.#t4, this.#t5, this.#t6, this.#t7, this.#t8];
 
-    constructor(weaponMap, seed, isBalancedCard) {
+    constructor(weaponMap, seed, isBalancedCard, isSplatScreenEnabled) {
         Math.seedrandom(seed);
         this.seed = seed;
         this.weaponMap = weaponMap;
         this.isBalancedCard = isBalancedCard;
+        this.isSplatScreenEnabled = isSplatScreenEnabled;
         this.template = this.#allTemplates[Math.floor(Math.random() * this.#allTemplates.length)];
         this.board = this.setupBoard();
     }
@@ -46,6 +47,10 @@ class BingoBoard {
             let index = Math.floor(Math.random() * tempWeapons.length);
             let chosenWeapon = tempWeapons[index];
             board[i] = chosenWeapon;
+            if (this.isSplatScreenEnabled === false && splatScreenWeapons.includes(chosenWeapon.name)) {
+                // pick a different weapon
+                i--;
+            }
             tempWeapons.splice(index, 1);
         }
         return board;
@@ -70,6 +75,10 @@ class BingoBoard {
                 let chosenWeapon = currentWeaponList[index];
                 let boardIndex = this.template[j][k];
                 board[boardIndex] = chosenWeapon;
+                if (this.isSplatScreenEnabled === false && splatScreenWeapons.includes(chosenWeapon.name)) {
+                    // pick a different weapon
+                    k--;
+                }
                 currentWeaponList.splice(index, 1);
             }
             tempWeaponsMap.set(currentKey, currentWeaponList);

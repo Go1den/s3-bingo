@@ -3,6 +3,7 @@ var randomWeaponPool = [];
 var isRandomWeaponsPoolPopulated = false;
 var myBingoBoard;
 var myWeaponRandomizer;
+var isSplatScreenEnabled;
 
 var bingo = function(weaponMap) {
 
@@ -11,7 +12,7 @@ var bingo = function(weaponMap) {
 
     let SEED = urlParams.get('seed');
 	if(SEED === undefined || SEED === null || SEED === "") {
-        return reseedPage(true);
+        return reseedPage(true, true);
     }
 	Math.seedrandom(SEED); //sets up the RNG
 
@@ -25,7 +26,20 @@ var bingo = function(weaponMap) {
         isBalancedCard = false;
     }
 
-    myBingoBoard = new BingoBoard(weaponMap, SEED, isBalancedCard);
+    let SPLATSCREEN = urlParams.get('splatscreen');
+    if(SPLATSCREEN === undefined || SPLATSCREEN === null || SPLATSCREEN.toLowerCase() !== "disabled") {
+        SPLATSCREEN = "enabled";
+    }
+
+    if(SPLATSCREEN.toLowerCase() == "disabled") {
+        isSplatScreenEnabled = false;
+        $("input[id=noSplatScreen]").prop("checked", true);
+    } else {
+        isSplatScreenEnabled = true;
+        $("input[id=yesSplatScreen]").prop("checked", true);
+    }
+
+    myBingoBoard = new BingoBoard(weaponMap, SEED, isBalancedCard, isSplatScreenEnabled);
 
 	var results = $("#results");
 	results.append ("<p>Splatoon3Bingo.com <strong>v7</strong>&emsp;Mode: <strong>" + MODE[0].toUpperCase() + MODE.substring(1) + "</strong>&emsp;Seed: <strong>" +
@@ -128,7 +142,7 @@ function initializeRandomizer() {
     if (document.getElementById("randomSet").checked === true) {
         seed = document.getElementById("mySeed").value;
     }
-    myWeaponRandomizer = new WeaponRandomizer(myBingoBoard, seed, isUsingAllWeapons, isAllowingRepeats, isIgnoreSeed);
+    myWeaponRandomizer = new WeaponRandomizer(myBingoBoard, seed, isUsingAllWeapons, isAllowingRepeats, isIgnoreSeed, isSplatScreenEnabled);
 }
 
 function updateRandomWeapon(currentObj) {
@@ -172,6 +186,9 @@ function reseedPage(isBalancedCard) {
 	var urlParams = "?seed=" + Math.ceil(999999 * Math.random());
     if (!isBalancedCard) {
         urlParams = urlParams + "&mode=chaos";
+    }
+    if (document.getElementById("noSplatScreen").checked === true) {
+        urlParams = urlParams + "&splatscreen=disabled";
     }
 	window.location = urlParams;
 	return false;
